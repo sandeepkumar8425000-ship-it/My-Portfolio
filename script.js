@@ -197,15 +197,22 @@ if (contactForm) {
         }
 
         try {
-            const response = await fetch("https://portfolio-backend-6ypf.onrender.com/api/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ name, email, phone, message })
-            });
+            const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                access_key: "d512fe01-06c8-488b-aad7-835dcde98229",
+                name: name,
+                email: email,
+                phone: phone,
+                message: message
+            })
+        });
 
-            const result = await response.json();
+        const result = await response.json();
 
             if (formMessage) {
                 formMessage.innerHTML = result.message || "Message sent successfully!";
